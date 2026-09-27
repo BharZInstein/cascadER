@@ -1,0 +1,114 @@
+{
+  "tune_macro_f05": 0.9721392406680887,
+  "splits": {
+    "train": {
+      "anchors": 198820,
+      "pairs": 2117895,
+      "true_links": 686705,
+      "candidate_recall": 0.9695123815903481,
+      "mean_candidates": 10.652323709888341,
+      "zero_candidate_anchors": 4
+    },
+    "tune": {
+      "anchors": 21736,
+      "pairs": 1703796,
+      "true_links": 74986,
+      "candidate_recall": 0.9687808390899635,
+      "mean_candidates": 78.3859035701141,
+      "zero_candidate_anchors": 0
+    },
+    "holdout": {
+      "anchors": 11199,
+      "pairs": 875261,
+      "true_links": 38900,
+      "candidate_recall": 0.9703856041131106,
+      "mean_candidates": 78.15528172158228,
+      "zero_candidate_anchors": 0
+    }
+  },
+  "model_search": [
+    {
+      "trees": 1200,
+      "depth": 8,
+      "threshold": 0.6599999999999997,
+      "rescue_threshold": 0.40000000000000013,
+      "country_policies": {
+        "india": {
+          "threshold": 0.6999999999999997,
+          "rescue_threshold": 0.40000000000000013
+        },
+        "us": {
+          "threshold": 0.6599999999999997,
+          "rescue_threshold": 0.6
+        }
+      },
+      "tune_macro_f05": 0.9720030484006289,
+      "seconds": 227.77623262489215
+    },
+    {
+      "trees": 1800,
+      "depth": 7,
+      "threshold": 0.7249999999999998,
+      "rescue_threshold": 0.5500000000000002,
+      "country_policies": {
+        "india": {
+          "threshold": 0.7249999999999998,
+          "rescue_threshold": 0.4
+        },
+        "us": {
+          "threshold": 0.7249999999999998,
+          "rescue_threshold": 0.5500000000000002
+        }
+      },
+      "tune_macro_f05": 0.9721392406680887,
+      "seconds": 297.82331337500364
+    }
+  ],
+  "fresh_validation": {
+    "scope": "Entire previously unused hash range [625,675); model chosen using established tuning data before this evaluation. No France labels.",
+    "original": {
+      "anchors": 11199,
+      "macro_f05": 0.9693787609006895,
+      "link_precision": 0.9900316927160928,
+      "link_recall": 0.9395629820051414,
+      "candidate_pairs": 875261,
+      "candidate_recall": 0.9703856041131106,
+      "by_country": {
+        "india": 0.959956956461383,
+        "us": 0.9755287964725686
+      },
+      "singleton_accuracy": 0.966183574879227,
+      "singletons": 621
+    },
+    "proposed": {
+      "anchors": 11199,
+      "macro_f05": 0.9722387726493528,
+      "link_precision": 0.9924840488807181,
+      "link_recall": 0.9437017994858612,
+      "candidate_pairs": 875261,
+      "candidate_recall": 0.9703856041131106,
+      "by_country": {
+        "india": 0.9634771943362164,
+        "us": 0.9779578489301973
+      },
+      "singleton_accuracy": 0.9629629629629629,
+      "singletons": 621
+    },
+    "macro_f05_gain": 0.0028600117486632507,
+    "paired_gain_95_percent_interval": [
+      0.0018485032112877846,
+      0.003954410446265268
+    ],
+    "improved_anchors": 439,
+    "worsened_anchors": 207
+  },
+  "holdout_macro_f05": 0.9722387726493528,
+  "holdout_link_precision": 0.9924840488807181,
+  "holdout_link_recall": 0.9437017994858612,
+  "holdout_by_country": {
+    "india": 0.9634771943362164,
+    "us": 0.9779578489301973
+  },
+  "holdout_singleton_accuracy": 0.9629629629629629,
+  "scope": "Internal evaluation on reserved reference groups from a non-distributed business-record dataset; not a public reproducible benchmark."
+}
