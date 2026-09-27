@@ -19,7 +19,9 @@ jobs:
           python-version: '3.12'
           cache: pip
       - run: python -m pip install -r requirements.txt
-      - run: python -m compileall -q src scripts
+      - run: python -m compileall -q src scripts tests
+      - name: Test metrics, matching policies, and input validation
+        run: python -m unittest discover -s tests -v
       - name: Verify model artifact hashes
         run: |
           python - <<'PY'
@@ -33,3 +35,5 @@ jobs:
         run: python scripts/run_demo.py
       - name: Verify completed run can be reopened
         run: python scripts/run_demo.py
+      - name: Exercise the reproducible benchmark
+        run: python scripts/benchmark.py --references 60

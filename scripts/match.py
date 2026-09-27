@@ -18,6 +18,7 @@ def check_inputs(data):
     for source in (1, 2, 3):
         path = data / f'test_source{source}.tsv'
         count = 0
+        seen = set()
         with path.open(encoding='utf-8', newline='') as stream:
             reader = csv.DictReader(stream, delimiter='\t')
             if reader.fieldnames != FIELDS:
@@ -30,6 +31,9 @@ def check_inputs(data):
                     raise ValueError(f'{path}: invalid ID {eid!r}; see README')
                 if int(eid[3:]) >= 2**30:
                     raise ValueError(f'{path}: ID suffix is too large: {eid}')
+                if eid in seen:
+                    raise ValueError(f'{path}: duplicate entity ID {eid!r}')
+                seen.add(eid)
         stat = path.stat()
         identities.append(dict(path=str(path), size=stat.st_size, mtime_ns=stat.st_mtime_ns))
         counts.append(count)
@@ -44,6 +48,7 @@ def main():
     parser.add_argument('--work-dir', type=Path, required=True)
     parser.add_argument('--model', type=Path, default=ROOT / 'models')
     parser.add_argument('--workers', type=int, default=4)
+    parser.add_argument('--save-features', action='store_true', help='Keep candidate features for review reports and benchmarks')
     args = parser.parse_args()
     if args.workers < 1:
         parser.error('--workers must be positive')
@@ -57,7 +62,8 @@ def main():
     source_fingerprints = {p.name: hashlib.sha256(p.read_bytes()).hexdigest() for p in (ROOT / 'src').glob('*.py')}
     work.mkdir(parents=True, exist_ok=True)
     state_path = work / 'run.json'
-    expected = dict(inputs=identity, model=str(model), artifacts=fingerprints, source=source_fingerprints)
+    expected = dict(inputs=identity, model=str(model), artifacts=fingerprints, source=source_fingerprints,
+                    save_features=args.save_features)
     state = json.loads(state_path.read_text()) if state_path.exists() else dict(expected, completed=[])
     if any(state.get(key) != value for key, value in expected.items()):
         raise ValueError('Inputs, model, or source changed; use a new work directory')
@@ -84,7 +90,7 @@ def main():
     run('competition', 'precompute_competition.py', '--db', db, '--references', refs, '--out', competition, '--workers', args.workers)
     run('predict', 'predict_parallel.py', '--source1', data / 'test_source1.tsv', '--db', db,
         '--model', model, '--competition-cache', competition, '--out', output,
-        '--workers', args.workers, '--save-scores')
+        '--workers', args.workers, '--save-scores', *(['--save-features'] if args.save_features else []))
     run('ownership', 'apply_unique_targets.py', '--output', output)
     run('validate', 'validate_outputs.py', '--test-dir', data, '--output', output,
         '--report', work / 'validation.json', '--unique-targets')

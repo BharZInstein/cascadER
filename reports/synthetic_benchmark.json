@@ -1,0 +1,388 @@
+{
+  "scope": "Fictional generated stress test, not a real-world benchmark. No training or threshold selection on these records.",
+  "generator": {
+    "seed": 42,
+    "references": 600,
+    "same_name_distractors": true,
+    "source_sha256": "9280825030efb88d2e40ee2060fa76e2dc8042eb18d1a0c69da2381c2c89e65f"
+  },
+  "data_sha256": {
+    "ground_truth.tsv": "cb723a533296e67c4298ce527c14f792ac93154f3d9050a6d98d05ddf82119a1",
+    "test_source1.tsv": "0935627de5a52748193f9b6a8ad0e26a2a0d8bdd1c79845eea56e041ff600694",
+    "test_source2.tsv": "d17aacafc508ca704ad53b997d156d9b7d0c72c2a6779229b2767b1fa0dbc743",
+    "test_source3.tsv": "9501495e9ce71c9cf6df7cf0da70bf0d53cd57602bd0d5eab16c5b58cab9b40c"
+  },
+  "model_sha256": {
+    "base_config.json": "42b69d2629591b48957f3f0008bd60bd304c962f80eaf707389d0fb8d058737d",
+    "base_model.ubj": "467b3f15be0af8f844fff07a5975368ff5fe9ba0c58c878f17ce859581f88d1b",
+    "model.ubj": "7ebe04ba0b8867400b95f6e063983af076fbddd4533415e9ae03729c5610b3ea",
+    "model_config.json": "8c707787c10d43550fcf73d42bc67249800e7e776326c23cede36ea482ba5b05",
+    "text_weights.joblib": "47882720f8f1ff220b328d180643a06d744603a3f6e1df7835eb0774cb84abd6"
+  },
+  "environment": {
+    "python": "3.12.14",
+    "system": "Darwin",
+    "machine": "arm64",
+    "dependencies": {
+      "numpy": "2.5.3",
+      "xgboost": "3.4.1",
+      "scikit-learn": "1.9.1",
+      "rapidfuzz": "3.14.6"
+    }
+  },
+  "timing": {
+    "workers": 2,
+    "full_pipeline_seconds": 5.686278832843527,
+    "prediction_seconds": 4.289990917081013,
+    "references_per_second": 105.5171611589717,
+    "scope": "Single run; includes index construction, subprocess startup, ownership, and validation; excludes data generation and baseline scoring."
+  },
+  "baseline_protocol": "Same retrieved candidates and unique ownership. Exact requires both normalized full name and address. Fuzzy uses 0.6 name + 0.4 address token-sort similarity, fixed threshold 0.85; no tuning on this data.",
+  "results": {
+    "normalized_exact": {
+      "references": 600,
+      "macro_f05": 0.2866666666666667,
+      "link_precision": 1.0,
+      "link_recall": 0.16893203883495145,
+      "true_positive_links": 174,
+      "predicted_links": 174,
+      "true_links": 1030,
+      "singletons": 85,
+      "singleton_accuracy": 1.0,
+      "by_country": {
+        "france": 0.285,
+        "india": 0.285,
+        "us": 0.29
+      },
+      "candidate_recall": 0.9990291262135922,
+      "by_scenario": {
+        "abbreviated": {
+          "references": 99,
+          "macro_f05": 0.1414141414141414,
+          "link_precision": null,
+          "link_recall": 0.0,
+          "true_positive_links": 0,
+          "predicted_links": 0,
+          "true_links": 170,
+          "singletons": 14,
+          "singleton_accuracy": 1.0,
+          "by_country": {
+            "france": 0.12121212121212122,
+            "india": 0.15151515151515152,
+            "us": 0.15151515151515152
+          }
+        },
+        "case_and_punctuation": {
+          "references": 102,
+          "macro_f05": 0.13725490196078433,
+          "link_precision": null,
+          "link_recall": 0.0,
+          "true_positive_links": 0,
+          "predicted_links": 0,
+          "true_links": 176,
+          "singletons": 14,
+          "singleton_accuracy": 1.0,
+          "by_country": {
+            "france": 0.14705882352941177,
+            "india": 0.14705882352941177,
+            "us": 0.11764705882352941
+          }
+        },
+        "clean": {
+          "references": 102,
+          "macro_f05": 1.0,
+          "link_precision": 1.0,
+          "link_recall": 1.0,
+          "true_positive_links": 174,
+          "predicted_links": 174,
+          "true_links": 174,
+          "singletons": 15,
+          "singleton_accuracy": 1.0,
+          "by_country": {
+            "france": 1.0,
+            "india": 1.0,
+            "us": 1.0
+          }
+        },
+        "missing_address": {
+          "references": 99,
+          "macro_f05": 0.1414141414141414,
+          "link_precision": null,
+          "link_recall": 0.0,
+          "true_positive_links": 0,
+          "predicted_links": 0,
+          "true_links": 170,
+          "singletons": 14,
+          "singleton_accuracy": 1.0,
+          "by_country": {
+            "france": 0.12121212121212122,
+            "india": 0.15151515151515152,
+            "us": 0.15151515151515152
+          }
+        },
+        "reordered": {
+          "references": 99,
+          "macro_f05": 0.1414141414141414,
+          "link_precision": null,
+          "link_recall": 0.0,
+          "true_positive_links": 0,
+          "predicted_links": 0,
+          "true_links": 170,
+          "singletons": 14,
+          "singleton_accuracy": 1.0,
+          "by_country": {
+            "france": 0.15151515151515152,
+            "india": 0.12121212121212122,
+            "us": 0.15151515151515152
+          }
+        },
+        "typo": {
+          "references": 99,
+          "macro_f05": 0.1414141414141414,
+          "link_precision": null,
+          "link_recall": 0.0,
+          "true_positive_links": 0,
+          "predicted_links": 0,
+          "true_links": 170,
+          "singletons": 14,
+          "singleton_accuracy": 1.0,
+          "by_country": {
+            "france": 0.15151515151515152,
+            "india": 0.12121212121212122,
+            "us": 0.15151515151515152
+          }
+        }
+      }
+    },
+    "fuzzy_fixed_085": {
+      "references": 600,
+      "macro_f05": 0.41071428571428575,
+      "link_precision": 0.5348837209302325,
+      "link_recall": 0.6699029126213593,
+      "true_positive_links": 690,
+      "predicted_links": 1290,
+      "true_links": 1030,
+      "singletons": 85,
+      "singleton_accuracy": 0.0,
+      "by_country": {
+        "france": 0.5107142857142857,
+        "india": 0.21071428571428574,
+        "us": 0.5107142857142857
+      },
+      "candidate_recall": 0.9990291262135922,
+      "by_scenario": {
+        "abbreviated": {
+          "references": 99,
+          "macro_f05": 0.5916305916305916,
+          "link_precision": 0.623574144486692,
+          "link_recall": 0.9647058823529412,
+          "true_positive_links": 164,
+          "predicted_links": 263,
+          "true_links": 170,
+          "singletons": 14,
+          "singleton_accuracy": 0.0,
+          "by_country": {
+            "france": 0.6277056277056278,
+            "india": 0.5411255411255411,
+            "us": 0.6060606060606061
+          }
+        },
+        "case_and_punctuation": {
+          "references": 102,
+          "macro_f05": 0.4411764705882353,
+          "link_precision": 0.5526315789473685,
+          "link_recall": 0.7159090909090909,
+          "true_positive_links": 126,
+          "predicted_links": 228,
+          "true_links": 176,
+          "singletons": 14,
+          "singleton_accuracy": 0.0,
+          "by_country": {
+            "france": 0.6092436974789917,
+            "india": 0.08403361344537816,
+            "us": 0.6302521008403362
+          }
+        },
+        "clean": {
+          "references": 102,
+          "macro_f05": 0.6092436974789917,
+          "link_precision": 0.6304347826086957,
+          "link_recall": 1.0,
+          "true_positive_links": 174,
+          "predicted_links": 276,
+          "true_links": 174,
+          "singletons": 15,
+          "singleton_accuracy": 0.0,
+          "by_country": {
+            "france": 0.6092436974789917,
+            "india": 0.6092436974789917,
+            "us": 0.6092436974789917
+          }
+        },
+        "missing_address": {
+          "references": 99,
+          "macro_f05": 0.0,
+          "link_precision": 0.0,
+          "link_recall": 0.0,
+          "true_positive_links": 0,
+          "predicted_links": 99,
+          "true_links": 170,
+          "singletons": 14,
+          "singleton_accuracy": 0.0,
+          "by_country": {
+            "france": 0.0,
+            "india": 0.0,
+            "us": 0.0
+          }
+        },
+        "reordered": {
+          "references": 99,
+          "macro_f05": 0.41125541125541126,
+          "link_precision": 0.5352112676056338,
+          "link_recall": 0.6705882352941176,
+          "true_positive_links": 114,
+          "predicted_links": 213,
+          "true_links": 170,
+          "singletons": 14,
+          "singleton_accuracy": 0.0,
+          "by_country": {
+            "france": 0.6060606060606061,
+            "india": 0.021645021645021644,
+            "us": 0.6060606060606061
+          }
+        },
+        "typo": {
+          "references": 99,
+          "macro_f05": 0.40404040404040403,
+          "link_precision": 0.5308056872037915,
+          "link_recall": 0.6588235294117647,
+          "true_positive_links": 112,
+          "predicted_links": 211,
+          "true_links": 170,
+          "singletons": 14,
+          "singleton_accuracy": 0.0,
+          "by_country": {
+            "france": 0.6060606060606061,
+            "india": 0.0,
+            "us": 0.6060606060606061
+          }
+        }
+      }
+    },
+    "cascader": {
+      "references": 600,
+      "macro_f05": 0.599404761904762,
+      "link_precision": 0.6261682242990654,
+      "link_recall": 0.9757281553398058,
+      "true_positive_links": 1005,
+      "predicted_links": 1605,
+      "true_links": 1030,
+      "singletons": 85,
+      "singleton_accuracy": 0.0,
+      "by_country": {
+        "france": 0.6132142857142857,
+        "india": 0.5753571428571429,
+        "us": 0.6096428571428572
+      },
+      "candidate_recall": 0.9990291262135922,
+      "by_scenario": {
+        "abbreviated": {
+          "references": 99,
+          "macro_f05": 0.6132756132756133,
+          "link_precision": 0.6319702602230484,
+          "link_recall": 1.0,
+          "true_positive_links": 170,
+          "predicted_links": 269,
+          "true_links": 170,
+          "singletons": 14,
+          "singleton_accuracy": 0.0,
+          "by_country": {
+            "france": 0.6277056277056278,
+            "india": 0.6060606060606061,
+            "us": 0.6060606060606061
+          }
+        },
+        "case_and_punctuation": {
+          "references": 102,
+          "macro_f05": 0.6162464985994398,
+          "link_precision": 0.6330935251798561,
+          "link_recall": 1.0,
+          "true_positive_links": 176,
+          "predicted_links": 278,
+          "true_links": 176,
+          "singletons": 14,
+          "singleton_accuracy": 0.0,
+          "by_country": {
+            "france": 0.6092436974789917,
+            "india": 0.6092436974789917,
+            "us": 0.6302521008403362
+          }
+        },
+        "clean": {
+          "references": 102,
+          "macro_f05": 0.6092436974789917,
+          "link_precision": 0.6304347826086957,
+          "link_recall": 1.0,
+          "true_positive_links": 174,
+          "predicted_links": 276,
+          "true_links": 174,
+          "singletons": 15,
+          "singleton_accuracy": 0.0,
+          "by_country": {
+            "france": 0.6092436974789917,
+            "india": 0.6092436974789917,
+            "us": 0.6092436974789917
+          }
+        },
+        "missing_address": {
+          "references": 99,
+          "macro_f05": 0.6111111111111112,
+          "link_precision": 0.6305970149253731,
+          "link_recall": 0.9941176470588236,
+          "true_positive_links": 169,
+          "predicted_links": 268,
+          "true_links": 170,
+          "singletons": 14,
+          "singleton_accuracy": 0.0,
+          "by_country": {
+            "france": 0.6212121212121212,
+            "india": 0.6060606060606061,
+            "us": 0.6060606060606061
+          }
+        },
+        "reordered": {
+          "references": 99,
+          "macro_f05": 0.6132756132756133,
+          "link_precision": 0.6319702602230484,
+          "link_recall": 1.0,
+          "true_positive_links": 170,
+          "predicted_links": 269,
+          "true_links": 170,
+          "singletons": 14,
+          "singleton_accuracy": 0.0,
+          "by_country": {
+            "france": 0.6060606060606061,
+            "india": 0.6277056277056278,
+            "us": 0.6060606060606061
+          }
+        },
+        "typo": {
+          "references": 99,
+          "macro_f05": 0.5324675324675324,
+          "link_precision": 0.5959183673469388,
+          "link_recall": 0.8588235294117647,
+          "true_positive_links": 146,
+          "predicted_links": 245,
+          "true_links": 170,
+          "singletons": 14,
+          "singleton_accuracy": 0.0,
+          "by_country": {
+            "france": 0.6060606060606061,
+            "india": 0.3917748917748918,
+            "us": 0.5995670995670995
+          }
+        }
+      }
+    }
+  }
+}

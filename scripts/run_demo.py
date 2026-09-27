@@ -9,7 +9,7 @@ def main():
     root = Path(__file__).resolve().parents[1]
     subprocess.run([sys.executable, str(root / 'scripts/match.py'),
                     '--data-dir', str(root / 'examples/data'),
-                    '--work-dir', str(root / 'artifacts/demo'), '--workers', '2'], check=True)
+                    '--work-dir', str(root / 'artifacts/demo'), '--workers', '2', '--save-features'], check=True)
     result = root / 'artifacts/demo/output/matching_results.tsv'
     with result.open() as stream:
         actual = {r['source1_entity_id']: set(filter(None, r['matched_entity_ids'].split(',')))
@@ -20,6 +20,8 @@ def main():
         raise RuntimeError(f'Demo predictions differ from the expected fictional matches: {actual}')
     print('\nFictional example predictions (verified):')
     print(result.read_text())
+    subprocess.run([sys.executable, str(root / 'scripts/review.py'), '--work-dir',
+                    str(root / 'artifacts/demo')], check=True)
 
 
 if __name__ == '__main__':
